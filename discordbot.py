@@ -1,32 +1,26 @@
-from cmath import log
-from distutils.sysconfig import PREFIX
-import discord
-from dotenv import load_dotenv
 import os
-load_dotenv()
+import discord
+from discord.ext import commands
 
-PREFIX = os.environ['PREFIX']
-TOKEN = os.environ['TOKEN']
+PREFIX = os.environ.get('PREFIX')
+TOKEN = os.environ.get('TOKEN')
 
-client = discord.Client()
+# Intents 명시
+intents = discord.Intents.default()
+intents.members = True
 
-@client.event
+bot = commands.Bot(command_prefix='#', intents=intents)
+
+
+@bot.event
 async def on_ready():
-    print(f'Logged in as {client.user}.')
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content == f'{PREFIX}call':
-        await message.channel.send("callback!")
-
-    if message.content.startswith(f'{PREFIX}hello'):
-        await message.channel.send('Hello!')
+    print(f'{bot.user.name}이 연결 되었습니다.')
+    await bot.change_presence(status=discord.Status.online, activity=None)
 
 
-try:
-    client.run(TOKEN)
-except discord.errors.LoginFailure as e:
-    print("Improper token has been passed.")
+@bot.command()
+async def 안녕(ctx):
+    await ctx.send('{}님, 반갑습니다.'.format(ctx.author.mention))
+
+
+bot.run(TOKEN)
