@@ -1,6 +1,10 @@
 import os
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+
+# load .env
+load_dotenv()
 
 PREFIX = os.environ.get('PREFIX')
 TOKEN = os.environ.get('TOKEN')

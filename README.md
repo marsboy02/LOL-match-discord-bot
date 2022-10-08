@@ -9,6 +9,12 @@ $ cd venv
 (venv) ~/venv$
 ```
 
+## 가상환경 종료
+```bash
+$ cd venv/bin
+$ deactivate
+```
+
 ## 패키지 설치
 ```bash
 $ pip3 install -r requirements.txt
@@ -17,4 +23,9 @@ $ pip3 install -r requirements.txt
 ## 패키지 확인
 ```bash
 $ pip3 freeze
+```
+
+## 디스코드 봇 실행
+```bash
+$ python3 discordboy.py
 ```
