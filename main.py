@@ -26,5 +26,4 @@ async def on_ready():
 async def 안녕(ctx):
     await ctx.send('{}님, 반갑습니다.'.format(ctx.author.mention))
 
-
 bot.run(TOKEN)
